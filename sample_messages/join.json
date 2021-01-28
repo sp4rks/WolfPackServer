@@ -1,0 +1,7 @@
+{
+    "message_type": "join",
+    "data": {
+        "name": "Tender Bears",
+        "secret": "TB4Lyfe"
+    }
+}

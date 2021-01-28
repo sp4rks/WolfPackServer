@@ -1,0 +1,9 @@
+{
+    "message_type": "squadmate",
+    "player": "paulkilla",
+    "data": {
+        "ias": 302,
+        "tas": 334,
+        "altitude": 2432 
+    }
+}

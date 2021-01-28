@@ -1,0 +1,8 @@
+{
+    "message_type": "enemy",
+    "player": "shyguy71",
+    "data": {
+        "vehicle": "Bf-109",
+        "altitude": 2432
+    }
+}
