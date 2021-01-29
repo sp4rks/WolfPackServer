@@ -1,3 +1,4 @@
+import uvicorn
 from starlette.applications import Starlette
 from starlette.responses import JSONResponse
 from starlette.routing import Route, Mount
@@ -27,12 +28,11 @@ routes = [
     Mount('/v1', routes=v1_routes)
 ]
 
-app = Starlette(routes=routes, middleware=middleware)
+application = Starlette(routes=routes, middleware=middleware)
 
 if __name__ == '__main__':
-    import uvicorn
     uvicorn.run(
-        'server:app',
+        'application:application',
         host='0.0.0.0',
         port=8000,
         reload=True
