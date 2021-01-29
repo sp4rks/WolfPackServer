@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from models import Enemy, SquadMate
-from encoding import dictify
+from .models import Enemy, SquadMate
+from .encoding import dictify
 
 async def handle_enemy(squad, message):
     result = Enemy.objects.update_one(
