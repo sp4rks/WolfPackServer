@@ -100,6 +100,23 @@ A message with details about an enemy plane (plane type, height etc)
       }    
     }
 
+## Spinning Up a Local Instance
+
+Required environment variables:
+
+ - MONGO_URL
+ - SQUAD_TTL
+ - DATA_TTL
+
+I quite like https://direnv.net/ for managing environment variables across multiple dev environments.
+
+    git clone https://github.com/sp4rks/wolfpack-server.git
+    cd wolfpack-server
+    virtualenv -p python3.7 venv
+    source venv/bin/activate
+    pip install -r requirements.txt
+    python server.py
+
 ## Other notes
 
  - Because the built in telemetry server for War Thunder runs over
