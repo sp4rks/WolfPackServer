@@ -13,7 +13,6 @@ from .handlers import handle_enemy, handle_squadmate, handle_outbound
 from .encoding import dictify
 
 
-
 MONGO_URL = os.environ['MONGO_URL']
 
 client = AsyncIOMotorClient(MONGO_URL)
