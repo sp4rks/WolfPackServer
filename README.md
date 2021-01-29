@@ -104,9 +104,9 @@ A message with details about an enemy plane (plane type, height etc)
 
 Required environment variables:
 
- MONGO_URL
- SQUAD_TTL
- DATA_TTL
+ - MONGO_URL
+ - SQUAD_TTL
+ - DATA_TTL
 
 I quite like https://direnv.net/ for managing environment variables across multiple dev environments.
 
