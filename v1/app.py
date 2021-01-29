@@ -5,7 +5,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from starlette.responses import JSONResponse
 from starlette.websockets import WebSocketDisconnect
 from starlette.routing import Route, WebSocketRoute
-from mongoengine.errors import NotUniqueError, FieldDoesNotExist
+from mongoengine.errors import NotUniqueError, FieldDoesNotExist, DoesNotExist
 
 from .models import Squad
 from .loops import join_squad_loop
@@ -30,11 +30,15 @@ async def create_squad(request):
         squad.save()
         return JSONResponse(dictify(squad), status_code=201)
 
+    except NotUniqueError:
+        try:
+            Squad.objects.get(name=body['name'], secret=body['secret'])
+            return JSONResponse(status_code=200)
+        except DoesNotExist:
+            return JSONResponse(status_code=409)
+
     except FieldDoesNotExist:
         return JSONResponse(status_code=400)
-
-    except NotUniqueError:
-        return JSONResponse(status_code=409)
 
     except Exception as e:
         print(f'1: {e}')
