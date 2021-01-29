@@ -129,7 +129,7 @@ async def subscribe(websocket):
 
 
 routes = [
-    Route('/squads', create_squad, methods=['POST']),
+    Route('/squads', create_squad, methods=['POST', 'OPTIONS']),
     WebSocketRoute('/pub', publish),
     WebSocketRoute('/sub', subscribe)
 ]
