@@ -114,6 +114,7 @@ I quite like https://direnv.net/ for managing environment variables across multi
     cd wolfpack-server
     virtualenv -p python3.7 venv
     source venv/bin/activate
+    pip install -r requirements.txt
     python server.py
 
 ## Other notes
