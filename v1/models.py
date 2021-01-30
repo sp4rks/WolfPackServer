@@ -32,7 +32,7 @@ class Squad(me.Document):
 
 class Enemy(me.Document):
     squad = me.ReferenceField(Squad, required=True)
-    player = me.StringField(required=True)
+    player = me.StringField(required=True, unique=True)
     data = me.DictField(default={})
     message_type = me.StringField(default='enemy')
     last_update = me.DateTimeField(default=datetime.utcnow)
@@ -60,13 +60,17 @@ class Enemy(me.Document):
 
 class SquadMate(me.Document):
     squad = me.ReferenceField(Squad, required=True)
-    player = me.StringField(required=True)
+    player = me.StringField(required=True, unique=True)
     data = me.DictField(default={})
     message_type = me.StringField(default='enemy')
     last_update = me.DateTimeField(default=datetime.utcnow)
 
     meta = {
         'indexes': [
+            {
+                'fields': ['squad', 'player'],
+                'unique': True
+            },
             {
                 'fields': ['last_update'],
                 'expireAfterSeconds': DATA_TTL

@@ -1,16 +1,34 @@
 from datetime import datetime
 
+from mongoengine.errors import DoesNotExist
+
 from .models import Enemy, SquadMate
 from .encoding import dictify
 
+
+async def upsert(model, squad, message):
+
+    model = globals()[model]
+
+    try:
+        player = model.objects.get(
+            squad=squad,
+            player=message['player']
+        )
+        return player.update(data=message['data'], last_update=datetime.utcnow())
+
+    except DoesNotExist:
+        player = model(
+            squad=squad,
+            player=message['player'],
+            data=message['data'],
+            last_update=datetime.utcnow()
+        )
+        return player.save()
+
+
 async def handle_enemy(squad, message):
-    result = Enemy.objects.update_one(
-        upsert=True,
-        squad=squad,
-        player=message['player'],
-        data=message['data'],
-        last_update=datetime.utcnow()
-    )
+    result = await upsert('Enemy', squad, message)
 
     if result:
         return {'success': True}
@@ -18,13 +36,7 @@ async def handle_enemy(squad, message):
         return {'success': False, message: 'An unknown error occurred'}
 
 async def handle_squadmate(squad, message):
-    result = SquadMate.objects.update_one(
-        upsert=True,
-        squad=squad,
-        player=message['player'],
-        data=message['data'],
-        last_update=datetime.utcnow()  
-    )
+    result = await upsert('SquadMate', squad, message)
 
     if result:
         return {'success': True}
