@@ -53,7 +53,7 @@ async def publish(websocket):
     while True:
         message = await websocket.receive_json()
 
-        if 'type' in message and 'data' in message:
+        if 'message_type' in message and 'data' in message:
 
             if message['message_type'] == 'enemy':
                 result = await handle_enemy(squad, message)

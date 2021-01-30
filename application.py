@@ -1,3 +1,5 @@
+import os
+
 import uvicorn
 from starlette.applications import Starlette
 from starlette.responses import JSONResponse
@@ -35,5 +37,5 @@ if __name__ == '__main__':
         'application:application',
         host='0.0.0.0',
         port=8000,
-        reload=True
+        reload=os.environ['RELOAD']
     )
