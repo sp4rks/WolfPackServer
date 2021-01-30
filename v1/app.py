@@ -1,4 +1,5 @@
 import os
+import asyncio
 
 from pymongo.errors import PyMongoError
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -14,9 +15,6 @@ from .encoding import dictify
 
 
 MONGO_URL = os.environ['MONGO_URL']
-
-client = AsyncIOMotorClient(MONGO_URL)
-db = client.wptest
 
 async def create_squad(request):
     body = await request.json()
@@ -84,7 +82,11 @@ async def publish(websocket):
     await websocket.close()
 
 async def subscribe(websocket):
+
     await websocket.accept()
+
+    client = AsyncIOMotorClient(MONGO_URL, io_loop=asyncio.get_event_loop())
+    db = client.wptest
 
     squad = await join_squad_loop(websocket)
 

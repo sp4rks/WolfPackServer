@@ -55,7 +55,7 @@ async def handle_outbound(squad, change):
             else:
                 return None
 
-        elif collection == 'squadmate':
+        elif collection == 'squad_mate':
             doc_id = change['documentKey']['_id']
             squadmate = SquadMate.objects.get(id=doc_id)
             if squadmate.squad == squad:
