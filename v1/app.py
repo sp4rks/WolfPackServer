@@ -1,5 +1,6 @@
 import os
 import asyncio
+from urllib.parse import urlparse
 
 from pymongo.errors import PyMongoError
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -15,6 +16,7 @@ from .encoding import dictify
 
 
 MONGO_URL = os.environ['MONGO_URL']
+MONGO_DB = urlparse(MONGO_URL).path.replace('/', '')
 
 async def create_squad(request):
     body = await request.json()
