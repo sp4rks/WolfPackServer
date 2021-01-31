@@ -87,7 +87,7 @@ async def subscribe(websocket):
     await websocket.accept()
 
     client = AsyncIOMotorClient(MONGO_URL, io_loop=asyncio.get_event_loop())
-    db = client.wptest
+    db = client.get_database(MONGO_DB)
 
     squad = await join_squad_loop(websocket)
 
