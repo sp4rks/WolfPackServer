@@ -47,7 +47,6 @@ async def publish(websocket):
     await websocket.accept()
 
     squad = await join_squad_loop(websocket)
-
     while True:
         message = await websocket.receive_json()
 
