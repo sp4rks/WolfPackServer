@@ -1,6 +1,7 @@
 from mongoengine.errors import DoesNotExist
 
 from .models import Squad
+from .encoding import dictify
 
 async def join_squad_loop(websocket):
     squad = None
