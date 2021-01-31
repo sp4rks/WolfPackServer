@@ -4,8 +4,8 @@ import os
 import mongoengine as me
 
 MONGO_URL = os.environ['MONGO_URL']
-SQUAD_TTL = int(os.environ['SQUAD_TTL'])
-DATA_TTL = int(os.environ['DATA_TTL'])
+SQUAD_TTL = 7 * 86400
+DATA_TTL = 60
 
 me.connect(host=MONGO_URL)
 
