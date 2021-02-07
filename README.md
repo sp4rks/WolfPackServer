@@ -1,5 +1,5 @@
 # wolfpack-server
-The backend squad server that enables information sharing for [Wolf Pack].(https://github.com/paulkilla/WarThunderUI)
+The backend squad server that enables information sharing for [Wolf Pack].(https://github.com/paulkilla/WolfPack)
 
 There's two main parts to work with:
 
